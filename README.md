@@ -48,6 +48,25 @@ The framework is inspired by recent advances in multimodal brain decoding, inclu
 - Build an interactive platform for visualizing predicted brain activity.
 
 ---
+# 🧠 Understanding BOLD Signals
+
+Functional Magnetic Resonance Imaging (**fMRI**) measures brain activity indirectly through the **Blood Oxygenation Level-Dependent (BOLD)** signal. Rather than recording neuronal firing directly, the BOLD signal captures changes in blood oxygenation that occur following neural activation.
+
+When a group of neurons becomes active, it consumes more oxygen. In response, the brain increases local cerebral blood flow, delivering oxygen-rich blood that exceeds the amount actually consumed. This change alters the ratio of oxygenated to deoxygenated hemoglobin, producing measurable variations in the MRI signal known as the **BOLD response**.
+
+Since this vascular response is delayed relative to neural activity, the BOLD signal typically peaks **4–6 seconds after a stimulus**, corresponding to approximately **5 TRs** in our dataset. To account for this physiological delay, our model aligns multimodal movie features with fMRI recordings using a **5-TR temporal shift**, ensuring that each predicted brain response corresponds to the appropriate neural event.
+
+### Key Characteristics
+
+- 🧠 Measures **hemodynamic response**, not electrical activity.
+- ⏳ Peaks approximately **4–6 seconds** after neural activation.
+- 📈 Represents changes in blood oxygenation caused by neuronal activity.
+- 🎯 Used as the target signal for predicting cortical responses across **1000 Schaefer brain parcels**.
+- 🔄 A **5-TR delay** is incorporated to synchronize movie stimuli with the corresponding BOLD response.
+
+<p align="center">
+<img src="images/bold_signal.png" width="700">
+</p>
 
 # 🏗 Project Pipeline
 
