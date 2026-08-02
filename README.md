@@ -158,6 +158,9 @@ The preprocessing pipeline includes:
 A **5-TR hemodynamic delay** is incorporated to align neural activity with presented stimuli.
 
 ---
+<p align="center">
+<img src="images/fMRI_prep.png" width="700">
+</p>
 
 # 🤖 Model Architecture
 
