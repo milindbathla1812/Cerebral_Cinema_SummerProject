@@ -194,12 +194,11 @@ Our model consists of:
 
 Training incorporates several modern optimization techniques:
 
-- ✅ AdamW Optimizer
-- ✅ Cosine Annealing Learning Rate
-- ✅ Early Stopping
-- ✅ Stochastic Weight Averaging (SWA)
-- ✅ Mixed Precision Training
-- ✅ Modality Dropout
+- ✅ AdamW Optimizer – Optimizes model parameters using adaptive learning rates while decoupling weight decay for better regularization.
+- ✅ Cosine Annealing Learning Rate – Gradually decreases the learning rate following a cosine schedule to improve convergence and stability.
+- ✅ Early Stopping – Stops training automatically when the validation performance no longer improves, preventing overfitting.
+- ✅ Stochastic Weight Averaging (SWA) – Averages weights from multiple training checkpoints to obtain a flatter optimum and better generalization.
+- ✅ Modality Dropout – Randomly masks one or more input modalities during training to improve robustness against missing or noisy data.
 
 Training:
 
