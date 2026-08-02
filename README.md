@@ -165,7 +165,7 @@ A **5-TR hemodynamic delay** is incorporated to align neural activity with prese
 # 🤖 Model Architecture
 
 <p align="center">
-<img src="assets/model_architecture.png" width="850">
+<img src="images/Architecture.png" width="850">
 </p>
 
 Our model consists of:
