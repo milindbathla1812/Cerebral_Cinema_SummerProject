@@ -52,7 +52,7 @@ The framework is inspired by recent advances in multimodal brain decoding, inclu
 # 🏗 Project Pipeline
 
 <p align="center">
-<img src="[https://raw.githubusercontent.com/<username>/<repo>/main/images/Pipeline.png](http://github.com/milindbathla1812/Cerebral_Cinema_SummerProject/blob/main/images/pipeline.png)" width="900">
+<img src="https://github.com/milindbathla1812/Cerebral_Cinema_SummerProject/blob/main/images/pipeline.png" width="900">
 </p>
 
 The overall pipeline consists of:
