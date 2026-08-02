@@ -65,7 +65,7 @@ Since this vascular response is delayed relative to neural activity, the BOLD si
 - 🔄 A **5-TR delay** is incorporated to synchronize movie stimuli with the corresponding BOLD response.
 
 <p align="center">
-<img src="images/bold_signal.png" width="700">
+<img src="images/BOLD.png" width="700">
 </p>
 
 # 🏗 Project Pipeline
