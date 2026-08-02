@@ -1,10 +1,15 @@
 # 🧠 Cerebral Cinema
-<p align="left">
-  <img src="images/logo.jpg.jpeg" alt="Brain and Cognitive Science Club IIT Kanpur" width="300">
-</p>
-<p align="right">
-  <img src="images/cerebral.png" width="450">
-</p>
+<div style="display:flex; justify-content:space-between; align-items:center;">
+
+<img src="images/logo.jpg.jpeg"
+     alt="BCS IIT Kanpur"
+     width="220">
+
+<img src="images/cerebral.png"
+     alt="Cerebral Cinema"
+     width="500">
+
+</div>
 
 This GitHub repository contains data and code for the Cerebral Cinema Project with has close resemblence with the Algonauts Competition 2025. 
 <div align="center">
