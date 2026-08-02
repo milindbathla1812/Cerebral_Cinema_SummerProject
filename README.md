@@ -1,4 +1,4 @@
-#                                                   🧠 Cerebral Cinema
+#🧠 Cerebral Cinema
 <div align="center">
 
 <table>
@@ -22,10 +22,13 @@ This GitHub repository contains data and code for the Cerebral Cinema Project wi
 
 
 
-[![Python](https://img.shields.io/badge/Python-3.12-blue.svg)]()
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-green.svg)]()
-[![Dataset](https://img.shields.io/badge/Dataset-Friends-f39c12.svg)]()
+[![Python](https://img.shields.io/badge/Python-3.12-blue)](https://www.python.org)
+
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org)
+
+[![License](https://img.shields.io/badge/License-MIT-green)](LICENSE)
+
+[![Dataset](https://img.shields.io/badge/Dataset-Friends-orange)](#dataset)
 
 </div>
 
