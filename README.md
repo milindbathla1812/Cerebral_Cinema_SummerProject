@@ -52,7 +52,7 @@ The framework is inspired by recent advances in multimodal brain decoding, inclu
 # 🏗 Project Pipeline
 
 <p align="center">
-<img src="images/Pipeline.png width="900">
+<img src="images/pipeline.png width="900">
 </p>
 
 The overall pipeline consists of:
