@@ -1,4 +1,4 @@
-#🧠 Cerebral Cinema
+# 🧠 Cerebral Cinema
 <div align="center">
 
 <table>
