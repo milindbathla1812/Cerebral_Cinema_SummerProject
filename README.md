@@ -10,7 +10,7 @@ This GitHub repository contains data and code for the Cerebral Cinema Project wi
 ### Predicting Human Brain Activity from Multimodal Movie Stimuli using Transformers
 
 <p align="center">
-  <img src="assets/logo.png" width="450">
+  <img src="images/cerebral.png" width="450">
 </p>
 
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)]()
