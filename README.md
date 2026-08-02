@@ -1,6 +1,9 @@
 # 🧠 Cerebral Cinema
-<p align="center">
+<p align="left">
   <img src="images/logo.jpg.jpeg" alt="Brain and Cognitive Science Club IIT Kanpur" width="300">
+</p>
+<p align="right">
+  <img src="images/cerebral.png" width="450">
 </p>
 
 This GitHub repository contains data and code for the Cerebral Cinema Project with has close resemblence with the Algonauts Competition 2025. 
@@ -8,9 +11,7 @@ This GitHub repository contains data and code for the Cerebral Cinema Project wi
   
 ### Predicting Human Brain Activity from Multimodal Movie Stimuli using Transformers
 
-<p align="center">
-  <img src="images/cerebral.png" width="450">
-</p>
+
 
 [![Python](https://img.shields.io/badge/Python-3.12-blue.svg)]()
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.x-red.svg)]()
