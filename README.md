@@ -58,11 +58,12 @@ The framework is inspired by recent advances in multimodal brain decoding, inclu
 The overall pipeline consists of:
 
 1. Movie & transcript preprocessing
-2. Feature extraction
-3. Multimodal fusion
-4. Transformer-based brain encoding
-5. fMRI prediction
-6. Brain activity visualization
+2. fMRI preprocessing
+3. Feature Extraction
+4. Multimodal fusion
+5. Transformer-based brain encoding
+6. fMRI prediction
+7. Brain activity visualization
 
 ---
 
