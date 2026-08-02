@@ -1,13 +1,17 @@
 # 🧠 Cerebral Cinema
-<div style="display:flex; justify-content:space-between; align-items:center;">
+<div align="center">
 
-<img src="images/logo.jpg.jpeg"
-     alt="BCS IIT Kanpur"
-     width="220">
+<table>
+<tr>
+<td align="left" width="35%">
+<img src="images/logo.jpg.jpeg" alt="BCS IIT Kanpur" width="220">
+</td>
 
-<img src="images/cerebral.png"
-     alt="Cerebral Cinema"
-     width="500">
+<td align="center" width="65%">
+<img src="images/cerebral.png" alt="Cerebral Cinema" width="500">
+</td>
+</tr>
+</table>
 
 </div>
 
