@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pipeline | Cerebral Cinema</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+<div class="logo">
+
+🧠 Cerebral Cinema
+
+</div>
+
+<ul>
+
+<li><a href="../index.html">Home</a></li>
+<li><a href="pipeline.html">Pipeline</a></li>
+<li><a href="model.html">Architecture</a></li>
+<li><a href="prediction.html">Results</a></li>
+<li><a href="demo.html">Demo</a></li>
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="page-hero">
+
+<h1>Research Pipeline</h1>
+
+<p>
+
+Complete multimodal workflow from movie stimuli
+to whole-brain activity prediction.
+
+</p>
+
+</section>
+
+<!-- ================= MAIN PIPELINE ================= -->
+
+<section class="content">
+
+<h2>Overall Workflow</h2>
+
+<img src="../../images/pipeline.png" class="section-image">
+
+</section>
+
+<!-- ================= DATA COLLECTION ================= -->
+
+<section class="content">
+
+<h2>Dataset Preparation</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h3>🎬 Movie Stimuli</h3>
+
+<p>
+
+Friends Seasons 1–6 are divided into short movie clips.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>💬 Dialogue</h3>
+
+<p>
+
+Subtitle transcripts synchronized with each TR.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🧠 fMRI</h3>
+
+<p>
+
+Whole-brain recordings from four participants.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>⏱ Temporal Alignment</h3>
+
+<p>
+
+Movie, transcript and brain recordings aligned using TR.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FEATURE EXTRACTION ================= -->
+
+<section class="content">
+
+<h2>Feature Extraction</h2>
+
+<p>
+
+Dialogue transcripts are encoded using TinyLlama to generate
+2048-dimensional semantic embeddings. Video clips are processed
+using VideoMAE, producing 768-dimensional visual representations
+for each temporal window.
+
+</p>
+
+<img src="../../images/Feature_Extraction.png"
+class="section-image">
+
+</section>
+
+<!-- ================= TEMPORAL ALIGNMENT ================= -->
+
+<section class="content">
+
+<h2>Temporal Windowing</h2>
+
+<p>
+
+Eight consecutive transcript embeddings are combined into a
+sliding temporal window. The corresponding VideoMAE features are
+aligned with each repetition time (TR), allowing the model to
+learn contextual relationships across multiple seconds of the
+movie.
+
+</p>
+
+</section>
+
+<!-- ================= FMRI ================= -->
+
+<section class="content">
+
+<h2>fMRI Preprocessing</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h3>Normalization</h3>
+
+<p>
+
+Voxel responses are z-score normalized.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>Schaefer Atlas</h3>
+
+<p>
+
+Voxel activity averaged into 1000 cortical parcels.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>Hemodynamic Delay</h3>
+
+<p>
+
+Targets shifted by five TRs to account for delayed BOLD response.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>Prediction Target</h3>
+
+<p>
+
+Each training sample predicts one 1000-dimensional brain vector.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 Cerebral Cinema • IIT Kanpur
+
+</p>
+
+</footer>
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>

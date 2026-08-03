@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Results | Cerebral Cinema</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🧠 Cerebral Cinema</div>
+
+<ul>
+<li><a href="../index.html">Home</a></li>
+<li><a href="pipeline.html">Pipeline</a></li>
+<li><a href="model.html">Architecture</a></li>
+<li><a href="prediction.html">Results</a></li>
+<li><a href="demo.html">Demo</a></li>
+<li><a href="about.html">About</a></li>
+</ul>
+
+</nav>
+
+<section class="page-hero">
+
+<h1>Prediction Results</h1>
+
+<p>
+Evaluation of Cerebral Cinema on multimodal movie-to-brain prediction.
+</p>
+
+</section>
+
+<!-- ================= Metrics ================= -->
+
+<section class="content">
+
+<h2>Evaluation Metrics</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+<h3>📈 Pearson Correlation</h3>
+<h1>0.20</h1>
+<p>Average parcel-wise correlation.</p>
+</div>
+
+<div class="info-card">
+<h3>🎯 Output Dimension</h3>
+<h1>1000</h1>
+<p>Cortical parcels predicted.</p>
+</div>
+
+<div class="info-card">
+<h3>🧠 Participants</h3>
+<h1>4</h1>
+<p>Subjects evaluated.</p>
+</div>
+
+<div class="info-card">
+<h3>🎬 Episodes</h3>
+<h1>6 Seasons</h1>
+<p>Friends Dataset.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= Training ================= -->
+
+<section class="content">
+
+<h2>Training Curves</h2>
+
+<p>
+
+Training loss, validation loss and Pearson correlation measured across epochs.
+
+</p>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h3>Training Loss</h3>
+
+<img src="../../images/train_loss.png" class="section-image">
+
+</div>
+
+<div class="info-card">
+
+<h3>Validation Loss</h3>
+
+<img src="../../images/val_loss.png" class="section-image">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= Prediction ================= -->
+
+<section class="content">
+
+<h2>Actual vs Predicted fMRI</h2>
+
+<p>
+
+The following visualization compares the predicted cortical activity with
+the recorded fMRI signal for a representative brain parcel.
+
+</p>
+
+<img src="../../images/prediction.png" class="section-image">
+
+</section>
+
+<!-- ================= Discussion ================= -->
+
+<section class="content">
+
+<h2>Discussion</h2>
+
+<p>
+
+The multimodal Transformer successfully learns joint representations from
+language and vision, enabling prediction of cortical responses to natural
+movie stimuli. Performance is evaluated using Pearson correlation, which
+measures similarity between predicted and recorded neural activity across
+brain parcels.
+
+</p>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 Cerebral Cinema • IIT Kanpur
+
+</p>
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Model Architecture | Cerebral Cinema</title>
+
+<link rel="stylesheet" href="../style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+🧠 Cerebral Cinema
+
+</div>
+
+<ul>
+
+<li><a href="../index.html">Home</a></li>
+<li><a href="pipeline.html">Pipeline</a></li>
+<li><a href="model.html">Architecture</a></li>
+<li><a href="prediction.html">Results</a></li>
+<li><a href="demo.html">Demo</a></li>
+<li><a href="about.html">About</a></li>
+
+</ul>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="page-hero">
+
+<h1>Multimodal Transformer Architecture</h1>
+
+<p>
+
+A lightweight Transformer predicts whole-brain fMRI activity by
+learning joint representations from language and visual features.
+
+</p>
+
+</section>
+
+<!-- ================= MAIN ARCH ================= -->
+
+<section class="content">
+
+<h2>Overall Architecture</h2>
+
+<p>
+The Cerebral Cinema model integrates multimodal movie information by
+combining language and visual embeddings into a shared latent space.
+Temporal dependencies are modeled using a Transformer encoder, whose
+CLS representation is finally mapped to whole-brain activity across
+1000 cortical parcels.
+</p>
+
+<div class="architecture">
+
+<div class="arch-box">
+💬
+<h3>TinyLlama</h3>
+<p>8 × 2048 Text Embeddings</p>
+</div>
+
+<div class="arch-arrow">+</div>
+
+<div class="arch-box">
+🎥
+<h3>VideoMAE</h3>
+<p>8 × 768 Video Embeddings</p>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box highlight">
+🔗
+<h3>Feature Fusion</h3>
+<p>Concatenate → 2816 Dimensions</p>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box">
+🎭
+<h3>Modality Dropout</h3>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box">
+📐
+<h3>Linear Projection</h3>
+<p>2816 → 384</p>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box">
+📍
+<h3>Positional Encoding</h3>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box">
+🧩
+<h3>CLS Token</h3>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box transformer">
+🤖
+<h3>Transformer Encoder</h3>
+<p>4 Layers • 8 Heads</p>
+</div>
+
+<div class="arch-arrow">↓</div>
+
+<div class="arch-box prediction">
+🧠
+<h3>Prediction Head</h3>
+<p>1000 Brain Parcels</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= COMPONENTS ================= -->
+
+<section class="content">
+
+<h2>Model Components</h2>
+
+<div class="info-grid">
+
+<div class="info-card">
+
+<h3>🎭 Modality Dropout</h3>
+
+<p>
+
+Randomly masks one modality during training to improve robustness
+and reduce dependence on a single feature source.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>📐 Linear Projection</h3>
+
+<p>
+
+Projects the concatenated 2816-dimensional multimodal embedding
+into a compact 384-dimensional latent space.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>📍 Positional Encoding</h3>
+
+<p>
+
+Injects temporal ordering information into the sequence so the
+Transformer understands frame positions.
+
+</p>
+
+</div>
+
+<div class="info-card">
+
+<h3>🧩 CLS Token</h3>
+
+<p>
+
+A learnable token aggregates information from the entire sequence
+and serves as the global representation.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TRANSFORMER ================= -->
+
+<section class="content">
+
+<h2>Transformer Encoder</h2>
+
+<p>
+
+The Transformer encoder models long-range temporal dependencies across
+the multimodal sequence. Each encoder layer applies Multi-Head
+Self-Attention followed by a Feed Forward Network with residual
+connections and Layer Normalization.
+
+</p>
+
+<div class="transformer-flow">
+
+<div class="tf-box">
+Input Sequence
+</div>
+
+<div class="tf-arrow">↓</div>
+
+<div class="tf-box attention">
+Multi-Head<br>Self Attention
+</div>
+
+<div class="tf-arrow">↓</div>
+
+<div class="tf-box">
+Add & LayerNorm
+</div>
+
+<div class="tf-arrow">↓</div>
+
+<div class="tf-box feedforward">
+Feed Forward<br>(384 → 1024 → 384)
+</div>
+
+<div class="tf-arrow">↓</div>
+
+<div class="tf-box">
+Add & LayerNorm
+</div>
+
+<div class="tf-arrow">↓</div>
+
+<div class="tf-box output">
+Output to Next Encoder Layer
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TABLE ================= -->
+
+<section class="content">
+
+<h2>Model Configuration</h2>
+
+<table class="config-table">
+
+<tr>
+<th>Component</th>
+<th>Value</th>
+</tr>
+
+<tr>
+<td>Encoder Layers</td>
+<td>4</td>
+</tr>
+
+<tr>
+<td>Attention Heads</td>
+<td>8</td>
+</tr>
+
+<tr>
+<td>Hidden Dimension</td>
+<td>384</td>
+</tr>
+
+<tr>
+<td>Feed Forward</td>
+<td>1024</td>
+</tr>
+
+<tr>
+<td>Activation</td>
+<td>GELU</td>
+</tr>
+
+<tr>
+<td>Prediction</td>
+<td>1000 Brain Parcels</td>
+</tr>
+
+</table>
+
+</section>
+
+<footer>
+
+<p>
+
+© 2026 Cerebral Cinema • IIT Kanpur
+
+</p>
+
+</footer>
+
+<script src="../script.js"></script>
+
+</body>
+
+</html>
