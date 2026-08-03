@@ -3,219 +3,211 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Demo | Cerebral Cinema</title>
+    <title>Demo | Cerebral Cinema</title>
 
-<link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
+<!-- Navigation -->
+
 <nav>
 
-<div class="logo">
+    <div class="logo">
+        🧠 Cerebral Cinema
+    </div>
 
-🧠 Cerebral Cinema
+    <ul>
 
-</div>
+        <li><a href="../index.html">Home</a></li>
 
-<ul>
+        <li><a href="pipeline.html">Pipeline</a></li>
 
-<li><a href="../index.html">Home</a></li>
-<li><a href="pipeline.html">Pipeline</a></li>
-<li><a href="model.html">Architecture</a></li>
-<li><a href="prediction.html">Results</a></li>
-<li><a href="demo.html">Demo</a></li>
-<li><a href="about.html">About</a></li>
+        <li><a href="model.html">Architecture</a></li>
 
-</ul>
+        <li><a href="prediction.html">Results</a></li>
+
+        <li><a href="demo.html" class="active">Demo</a></li>
+
+        <li><a href="about.html">About</a></li>
+
+    </ul>
 
 </nav>
 
-<section class="page-hero">
 
-<h1>Interactive Demo</h1>
+<!-- ================= HERO ================= -->
 
-<p>
+<section class="page-header">
 
-Future interface for exploring multimodal brain decoding.
+    <h1>Interactive Brain Activity Prediction</h1>
 
-</p>
+    <p>
+
+        Upload multimodal embeddings and predict cortical brain activity
+        using the trained Cerebral Cinema Transformer model.
+
+    </p>
 
 </section>
+
+
+<!-- ================= DEMO ================= -->
+
+<section class="demo-container">
+
+    <!-- Upload Panel -->
+
+    <div class="upload-panel">
+
+        <h2>Upload Input Files</h2>
+
+        <div class="upload-card">
+
+            <label>💬 Text Embeddings (.npy)</label>
+
+            <input type="file" id="textFile" accept=".npy">
+
+        </div>
+
+        <div class="upload-card">
+
+            <label>🎥 Video Embeddings (.npy)</label>
+
+            <input type="file" id="videoFile" accept=".npy">
+
+        </div>
+
+        <div class="upload-card">
+
+            <label>🧠 Ground Truth fMRI (.npy)</label>
+
+            <input type="file" id="fmriFile" accept=".npy">
+
+        </div>
+
+        <button class="predict-btn">
+
+            🚀 Predict Brain Activity
+
+        </button>
+
+
+        <div class="accepted-files">
+
+            <h3>Accepted Input</h3>
+
+            <ul>
+
+                <li>✔ Text Embeddings (.npy)</li>
+
+                <li>✔ Video Embeddings (.npy)</li>
+
+                <li>✔ Ground Truth fMRI (.npy)</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- Results Panel -->
+
+    <div class="results-panel">
+
+        <h2>Prediction Results</h2>
+
+        <div class="result-box">
+
+            <h3>Pearson Correlation</h3>
+
+            <div class="score" id="pearsonScore">
+
+                --
+
+            </div>
+
+        </div>
+
+
+
+        <div class="result-box">
+
+            <h3>Model Status</h3>
+
+            <p id="statusText">
+
+                Waiting for user input...
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= Workflow ================= -->
 
 <section class="content">
 
-<h2>Upload Movie Clip</h2>
+    <h2>Prediction Workflow</h2>
 
-<div class="demo-box">
+    <div class="workflow-horizontal">
 
-<input type="file">
+        <div class="workflow-card">
+            <div class="icon">📂</div>
+            <h3>Upload</h3>
+            <p>Text • Video • fMRI</p>
+        </div>
 
-<br><br>
+        <div class="workflow-arrow">↓</div>
 
-<button class="btn">
+        <div class="workflow-card">
+            <div class="icon">🤖</div>
+            <h3>TribeLite</h3>
+            <p>Multimodal Transformer</p>
+        </div>
 
-Predict Brain Activity
+        <div class="workflow-arrow">↓</div>
 
-</button>
+        <div class="workflow-card">
+            <div class="icon">🧠</div>
+            <h3>Prediction</h3>
+            <p>1000 Brain Parcels</p>
+        </div>
 
-</div>
+        <div class="workflow-arrow">↓</div>
+
+        <div class="workflow-card">
+            <div class="icon">📈</div>
+            <h3>Pearson Score</h3>
+            <p>Model Evaluation</p>
+        </div>
+
+    </div>
 
 </section>
 
-<section class="content">
 
-<h2>Expected Workflow</h2>
 
-<div class="workflow">
-
-    <div class="workflow-box">
-        🎬
-        <h3>Upload Video</h3>
-    </div>
-
-    <div class="workflow-arrow">→</div>
-
-    <div class="workflow-box">
-        💬
-        <h3>Transcript</h3>
-    </div>
-
-    <div class="workflow-arrow">→</div>
-
-    <div class="workflow-box">
-        🤖
-        <h3>TinyLlama + VideoMAE</h3>
-    </div>
-
-    <div class="workflow-arrow">→</div>
-
-    <div class="workflow-box transformer-box">
-        🧠
-        <h3>Transformer</h3>
-    </div>
-
-    <div class="workflow-arrow">→</div>
-
-    <div class="workflow-box prediction-box">
-        📈
-        <h3>Predicted fMRI</h3>
-    </div>
-
-</div>
-
-</section>
-
-<section class="content">
-
-<h2>Planned Features</h2>
-
-<div class="info-grid">
-
-<div class="info-card">
-
-🎬
-
-<h3>Movie Upload</h3>
-
-<p>
-
-Upload a video clip for inference.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-💬
-
-<h3>Transcript</h3>
-
-<p>
-
-Automatically process dialogue.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-🧠
-
-<h3>Brain Prediction</h3>
-
-<p>
-
-Predict 1000 cortical parcels.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-🌍
-
-<h3>Brain Viewer</h3>
-
-<p>
-
-Interactive cortical visualization.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-📈
-
-<h3>Actual vs Predicted</h3>
-
-<p>
-
-Compare brain responses.
-
-</p>
-
-</div>
-
-<div class="info-card">
-
-🔥
-
-<h3>Attention Maps</h3>
-
-<p>
-
-Visualize Transformer attention.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section class="content">
-
-<h2>Coming Soon</h2>
-
-<p style="text-align:center;font-size:22px;">
-
-🚧 This module is currently under development.
-
-</p>
-
-</section>
+<!-- ================= Footer ================= -->
 
 <footer>
 
@@ -226,6 +218,8 @@ Visualize Transformer attention.
 </p>
 
 </footer>
+
+<script src="../script.js"></script>
 
 </body>
 
