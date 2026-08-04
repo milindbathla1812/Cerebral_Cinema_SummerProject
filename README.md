@@ -4,11 +4,11 @@
 <table>
 <tr>
 <td align="left" width="35%">
-<img src="website/images/logo.jpg.jpeg" alt="BCS IIT Kanpur" width="220">
+<img src="images/logo.jpg.jpeg" alt="BCS IIT Kanpur" width="220">
 </td>
 
 <td align="center" width="65%">
-<img src="website/images/cerebral.png" alt="Cerebral Cinema" width="500">
+<img src="images/cerebral.png" alt="Cerebral Cinema" width="500">
 </td>
 </tr>
 </table>
