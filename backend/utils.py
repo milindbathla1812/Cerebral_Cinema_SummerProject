@@ -2,6 +2,14 @@ import re
 import numpy as np
 from pathlib import Path
 
+
+def load_npy(path):
+    """
+    Load numpy file.
+    """
+    return np.load(path, allow_pickle=False)
+
+
 def episode_name(path):
     """
     Extract episode identifier such as s01e03
@@ -18,10 +26,10 @@ def episode_name(path):
 
     return match.group(0)
 
+
 def get_fmri_file(folder, episode):
     """
-    Find corresponding fMRI file
-    for an episode.
+    Find corresponding fMRI file.
     """
 
     files = list(
@@ -33,6 +41,7 @@ def get_fmri_file(folder, episode):
 
     return files[0]
 
+
 def build_text_windows(text):
     """
     Convert transcript embeddings into
@@ -42,42 +51,77 @@ def build_text_windows(text):
     windows = []
 
     for i in range(len(text) - 7):
-
-        windows.append(
-            text[i:i+8]
-        )
+        windows.append(text[i:i + 8])
 
     return np.stack(windows)
 
+
 def fuse_modalities(text_window, video_window):
     """
-    Concatenate text and video features.
+    Concatenate text and video embeddings.
     """
 
-    print("Text window shape :", text_window.shape)
-    print("Video window shape:", video_window.shape)
+    print("Text window :", text_window.shape)
+    print("Video window:", video_window.shape)
 
-    # If video is (D,) -> make it (1,D)
+    text_window = np.asarray(text_window, dtype=np.float32)
+    video_window = np.asarray(video_window, dtype=np.float32)
+
+    # --------------------------
+    # Remove unnecessary singleton dimensions
+    # --------------------------
+
+    text_window = np.squeeze(text_window)
+    video_window = np.squeeze(video_window)
+
+    # --------------------------
+    # Text should be (8,2048)
+    # --------------------------
+
+    if text_window.ndim == 1:
+        text_window = text_window[None, :]
+
+    # --------------------------
+    # Video should become (8,768)
+    # --------------------------
+
     if video_window.ndim == 1:
-        video_window = np.expand_dims(video_window, axis=0)
 
-    # Repeat video across all text tokens
-    if video_window.shape[0] == 1:
         video_window = np.repeat(
-            video_window,
+            video_window[None, :],
             text_window.shape[0],
             axis=0
         )
 
-    print("Video after reshape :", video_window.shape)
+    elif video_window.ndim == 2:
 
-    return np.concatenate(
-        [
-            text_window,
-            video_window
-        ],
+        if video_window.shape[0] == 1:
+
+            video_window = np.repeat(
+                video_window,
+                text_window.shape[0],
+                axis=0
+            )
+
+        elif video_window.shape[0] != text_window.shape[0]:
+
+            video_window = np.repeat(
+                video_window[0:1],
+                text_window.shape[0],
+                axis=0
+            )
+
+    print("Text final :", text_window.shape)
+    print("Video final:", video_window.shape)
+
+    fused = np.concatenate(
+        [text_window, video_window],
         axis=-1
     )
+
+    print("Fused shape :", fused.shape)
+
+    return fused
 
 
 def prepare_sample(text, video, tr):
@@ -86,7 +130,7 @@ def prepare_sample(text, video, tr):
     """
 
     text_window = np.asarray(
-        text[tr:tr+8],
+        text[tr:tr + 8],
         dtype=np.float32
     )
 
@@ -102,10 +146,10 @@ def prepare_sample(text, video, tr):
 
     return fused
 
+
 def pearson_score(prediction, target):
     """
-    Compute mean Pearson correlation
-    across brain parcels.
+    Mean Pearson correlation.
     """
 
     prediction = prediction.reshape(-1)
@@ -114,19 +158,14 @@ def pearson_score(prediction, target):
     prediction = prediction - prediction.mean()
     target = target - target.mean()
 
-    numerator = np.sum(
-        prediction * target
-    )
+    numerator = np.sum(prediction * target)
 
     denominator = np.sqrt(
-        np.sum(prediction**2)
-        *
-        np.sum(target**2)
+        np.sum(prediction ** 2)
+        * np.sum(target ** 2)
     )
 
     if denominator == 0:
         return 0.0
 
-    return float(
-        numerator / denominator
-    )
+    return float(numerator / denominator)
