@@ -67,24 +67,26 @@ async def predict_brain_activity(
 
     print("Starting inference...")
 
-    result = predict(
-        text_path,
-        video_path,
-        fmri_path
-    )
+    try:
+        result = predict(
+            text_path,
+            video_path,
+            fmri_path
+        )
 
-    print("Inference complete")
-
-    return JSONResponse(
-        {
-
+        return {
             "pearson": result["pearson"],
-
             "graph": result["graph"]
-
         }
 
-    )
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+
+        return JSONResponse(
+            status_code=500,
+            content={"error": str(e)}
+        )
 
 @app.get("/")
 def home():
