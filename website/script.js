@@ -175,6 +175,8 @@ if (predictBtn) {
             }
 
             const result = await response.json();
+            
+            console.log(result);
 
             document.getElementById("pearsonScore").innerHTML =
                 Number(result.pearson).toFixed(4);
