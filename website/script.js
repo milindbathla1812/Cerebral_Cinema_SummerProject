@@ -126,3 +126,77 @@ document.querySelectorAll(".pipeline-box").forEach(box=>{
     });
 
 });
+
+// ============================
+// Prediction API
+// ============================
+
+const API_URL = "https://cerebral-cinema-summerproject.onrender.com/predict";
+
+const predictBtn = document.getElementById("predictBtn");
+
+if (predictBtn) {
+
+    predictBtn.addEventListener("click", async () => {
+
+        const textFile = document.getElementById("textFile").files[0];
+        const videoFile = document.getElementById("videoFile").files[0];
+        const fmriFile = document.getElementById("fmriFile").files[0];
+
+        if (!textFile || !videoFile || !fmriFile) {
+
+            alert("Please upload all three .npy files.");
+            return;
+
+        }
+
+        const formData = new FormData();
+
+        formData.append("text", textFile);
+        formData.append("video", videoFile);
+        formData.append("fmri", fmriFile);
+
+        document.getElementById("pearsonScore").innerHTML = "...";
+        document.getElementById("statusText").innerHTML = "Running inference...";
+
+        try {
+
+            const response = await fetch(API_URL, {
+
+                method: "POST",
+                body: formData
+
+            });
+
+            if (!response.ok) {
+
+                throw new Error("Server Error");
+
+            }
+
+            const result = await response.json();
+
+            document.getElementById("pearsonScore").innerHTML =
+                Number(result.pearson).toFixed(4);
+
+            document.getElementById("statusText").innerHTML =
+                "Prediction completed successfully!";
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            document.getElementById("pearsonScore").innerHTML = "--";
+
+            document.getElementById("statusText").innerHTML =
+                "Prediction failed.";
+
+            alert("Prediction Failed.");
+
+        }
+
+    });
+
+}
