@@ -63,11 +63,17 @@ async def predict_brain_activity(
             buffer
         )
 
+    print("Files uploaded successfully")
+
+    print("Starting inference...")
+
     result = predict(
         text_path,
         video_path,
         fmri_path
     )
+
+    print("Inference complete")
 
     return JSONResponse(
         {
