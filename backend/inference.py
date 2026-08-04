@@ -1,6 +1,5 @@
 import torch
 import numpy as np
-import matplotlib.pyplot as plt
 
 from model import load_model
 from utils import (
@@ -16,118 +15,61 @@ model = load_model(
     DEVICE
 )
 
+
 def predict(text_file, video_file, fmri_file):
     """
-    Predict brain activity and compare with
-    ground truth fMRI.
+    Predict brain activity for one sample.
     """
 
+    print("Loading files...")
+
     text = load_npy(text_file)
-
     video = load_npy(video_file)
-
     fmri = load_npy(fmri_file)
 
-    usable = min(
-        len(text)-7,
-        len(video),
-        len(fmri)-5
+    # Ensure enough frames are available
+    if len(text) < 8:
+        raise ValueError("Text embedding file must contain at least 8 time steps.")
+
+    if len(video) < 1:
+        raise ValueError("Video embedding file is empty.")
+
+    if len(fmri) < 6:
+        raise ValueError("fMRI file must contain at least 6 TRs.")
+
+    tr = 0
+
+    fused = prepare_sample(
+        text,
+        video,
+        tr
     )
-    usable = min(
-        len(text)-7,
-        len(video),
-        len(fmri)-5
-    )
-    predictions = []
-    targets = []
+
+    fused = torch.from_numpy(fused).unsqueeze(0).to(DEVICE)
+
+    print("Running model...")
 
     with torch.no_grad():
+        prediction = model(fused)
 
-        for tr in range(usable):
+    prediction = prediction.squeeze(0).cpu().numpy()
 
-            fused = prepare_sample(
-                text,
-                video,
-                tr
-            )
-
-            fused = torch.from_numpy(
-                fused
-            ).unsqueeze(0).to(DEVICE)
-
-            prediction = model(fused)
-
-            prediction = (
-                prediction
-                .cpu()
-                .numpy()[0]
-            )
-
-            target = fmri[tr+5]
-
-            predictions.append(prediction)
-
-            targets.append(target)
-
-    predictions = np.stack(predictions)
-
-    targets = np.stack(targets)
-
-    scores = []
-
-    for i in range(len(predictions)):
-
-        scores.append(
-
-            pearson_score(
-                predictions[i],
-                targets[i]
-            )
-
-        )
-
-    mean_score = float(
-        np.mean(scores)
+    target = np.asarray(
+        fmri[5],
+        dtype=np.float32
     )
 
-    plt.figure(figsize=(10,5))
-
-    plt.plot(
-        targets[:,0],
-        label="Actual"
+    score = pearson_score(
+        prediction,
+        target
     )
 
-    plt.plot(
-        predictions[:,0],
-        label="Predicted"
-    )
-
-    plt.xlabel("TR")
-
-    plt.ylabel("BOLD Signal")
-
-    plt.title(
-        "Predicted vs Actual fMRI"
-    )
-
-    plt.legend()
-
-    plt.tight_layout()
-
-    plt.savefig(
-        "prediction.png"
-    )
-
-    plt.close()
+    print(f"Pearson Score : {score:.4f}")
+    print("Inference completed.")
 
     return {
-
-        "pearson": mean_score,
-
-        "prediction": predictions,
-
-        "target": targets,
-
-        "graph": "prediction.png"
-
+        "pearson": round(float(score), 4),
+        "prediction": prediction.tolist(),
+        "target": target.tolist(),
+        "graph": None
     }
