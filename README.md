@@ -247,33 +247,37 @@ A web interface is being developed to explore multimodal brain decoding interact
 # 📁 Repository Structure
 
 ```text
-Cerebral-Cinema/
+Cerebral_Cinema/
 │
-├── images/
-│   ├── logo.png
-│   ├── pipeline.png
-│   ├── model_architecture.png
-│   └── prediction.png
+├── backend/                     # FastAPI backend
+│   ├── app.py                   # API endpoints
+│   ├── inference.py             # Model inference pipeline
+│   ├── model.py                 # TribeLite Transformer architecture
+│   ├── utils.py                 # Data preprocessing utilities
+│   ├── requirements.txt         # Python dependencies
+│   ├── uploads/                 # Temporary uploaded files
+│   └── models/
+│       └── best_tribe_lite_epoch20.pth
 │
-├── notebooks/
+├── frontend/                    # Website
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   ├── assets/
+│   │   ├── images/
+│   │   └── icons/
+│   └── pages/
+│       ├── about.html
+│       ├── demo.html
+│       ├── model.html
+│       ├── pipeline.html
+│       └── prediction.html
 │
-├── models/
+├── notebooks/                   # Model development notebooks
 │
-├── transcripts/
+├── data/                        # Example/sample data
 │
-├── video_windows/
-│
-├── fmri/
-│
-├── website/
-│
-├── utils/
-│
-├── train.py
-├── evaluate.py
-├── inference.py
-│
-└── README.md
+├── README.md
 ```
 
 ---
