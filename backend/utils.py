@@ -54,6 +54,23 @@ def fuse_modalities(text_window, video_window):
     Concatenate text and video features.
     """
 
+    print("Text window shape :", text_window.shape)
+    print("Video window shape:", video_window.shape)
+
+    # If video is (D,) -> make it (1,D)
+    if video_window.ndim == 1:
+        video_window = np.expand_dims(video_window, axis=0)
+
+    # Repeat video across all text tokens
+    if video_window.shape[0] == 1:
+        video_window = np.repeat(
+            video_window,
+            text_window.shape[0],
+            axis=0
+        )
+
+    print("Video after reshape :", video_window.shape)
+
     return np.concatenate(
         [
             text_window,
@@ -62,15 +79,6 @@ def fuse_modalities(text_window, video_window):
         axis=-1
     )
 
-def load_npy(path):
-    """
-    Load a numpy array.
-    """
-
-    return np.load(
-        path,
-        mmap_mode="r"
-    )
 
 def prepare_sample(text, video, tr):
     """
