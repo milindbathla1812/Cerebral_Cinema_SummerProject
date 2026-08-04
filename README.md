@@ -215,7 +215,7 @@ Testing:
 Example prediction from one cortical parcel:
 
 <p align="center">
-<img src="assets/prediction.png" width="800">
+<img src="images/1.png" width="800">
 </p>
 
 Performance metric:
@@ -224,8 +224,8 @@ Performance metric:
 
 | Split | Pearson |
 |---------|----------|
-| Validation | xx.xxx |
-| Test | xx.xxx |
+| Validation | 0.26034 |
+| Test | 0.20074 |
 
 ---
 
@@ -249,7 +249,7 @@ A web interface is being developed to explore multimodal brain decoding interact
 ```text
 Cerebral-Cinema/
 │
-├── assets/
+├── images/
 │   ├── logo.png
 │   ├── pipeline.png
 │   ├── model_architecture.png
